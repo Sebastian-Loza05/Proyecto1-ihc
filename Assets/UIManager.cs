@@ -17,9 +17,6 @@ public class UIManager : MonoBehaviour
         messageText.text = "Detectando superficie..."; // Mensaje inicial
     }
 
-    /// <summary>
-    /// Llama esto solo desde HiddenPlaneNotifier
-    /// </summary>
     public void NotifyFirstPlaneDetected()
     {
         if (hasShownDetectionMessage)
@@ -28,6 +25,12 @@ public class UIManager : MonoBehaviour
         hasShownDetectionMessage = true;
         StopAllCoroutines();
         StartCoroutine(ShowMessageCoroutine("¡Superficie detectada!", 2f));
+    }
+
+    public void ShowMessage(string msg, float duration = 2f)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ShowMessageCoroutine(msg, duration));
     }
 
     System.Collections.IEnumerator ShowMessageCoroutine(string msg, float duration)
